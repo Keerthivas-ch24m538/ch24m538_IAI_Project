@@ -1,0 +1,11 @@
+{
+  "features": [
+    "Pclass",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare",
+    "Sex",
+    "Embarked"
+  ]
+}
