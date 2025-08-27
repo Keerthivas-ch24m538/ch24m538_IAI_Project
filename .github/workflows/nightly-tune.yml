@@ -1,0 +1,59 @@
+name: Nightly Tune
+
+on:
+  schedule:
+    - cron: "30 2 * * *"  # 02:30 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  DO_TUNE: "true"
+
+jobs:
+  tune-and-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # for metrics diff vs previous commit
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install dvc[s3]  # adjust for your remote
+
+      - name: DVC pull (optional)
+        if: ${{ env.DVC_REMOTE != '' }}
+        env:
+          DVC_REMOTE: ${{ secrets.DVC_REMOTE }}
+        run: dvc pull || true
+
+      - name: DVC repro (tuning on)
+        env:
+          DO_TUNE: "true"
+        run: dvc repro
+
+      - name: DVC metrics diff vs previous commit
+        run: |
+          git rev-parse HEAD~1 || echo "No previous commit"
+          dvc metrics diff HEAD~1 || true
+
+      - name: Upload reports artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-reports-${{ github.run_id }}
+          path: |
+            reports/metrics.json
+            reports/plots/**
+          if-no-files-found: warn
+
