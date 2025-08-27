@@ -55,14 +55,23 @@ stages:
       nfiles: 4
     - path: src/train.py
       hash: md5
-      md5: 24b86dbd8ac22e130bb6b7fc842f17cd
-      size: 1415
+      md5: e85221a98d18af97c14b0d97ad08bce5
+      size: 10147
     outs:
-    - path: model
+    - path: models
       hash: md5
-      md5: e8276f67a32d7b4839281efed80366a2.dir
-      size: 1183
+      md5: 0fb211d1ae2a1a24fee33551181c572e.dir
+      size: 1870
       nfiles: 1
+    - path: reports/metrics.json
+      hash: md5
+      md5: 48fd8a1ae39b4240c38e1b0350350e89
+      size: 436
+    - path: reports/plots
+      hash: md5
+      md5: ca4bc9ec11325ec2cd7945d858f8d391.dir
+      size: 130091
+      nfiles: 6
   validate_raw:
     cmd: python scripts/validate_raw_titanic.py
     deps:
