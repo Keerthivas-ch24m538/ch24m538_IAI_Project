@@ -55,8 +55,8 @@ stages:
       nfiles: 4
     - path: src/train.py
       hash: md5
-      md5: e85221a98d18af97c14b0d97ad08bce5
-      size: 10147
+      md5: 76085e0e2656fc7ae64647cb222d0c54
+      size: 10364
     outs:
     - path: models
       hash: md5
@@ -69,9 +69,9 @@ stages:
       size: 436
     - path: reports/plots
       hash: md5
-      md5: ca4bc9ec11325ec2cd7945d858f8d391.dir
-      size: 130091
-      nfiles: 6
+      md5: 8e453836e3486ac2e432601eb34cd9d9.dir
+      size: 194326
+      nfiles: 9
   validate_raw:
     cmd: python scripts/validate_raw_titanic.py
     deps:
