@@ -41,3 +41,21 @@ stages:
       md5: 178f1ff965ef9e34c4b8e818cdf2f5d4.dir
       size: 6756
       nfiles: 4
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: features
+      hash: md5
+      md5: 178f1ff965ef9e34c4b8e818cdf2f5d4.dir
+      size: 6756
+      nfiles: 4
+    - path: src/train.py
+      hash: md5
+      md5: cc54f66ff9649ad3e08acee2fbfd5ad2
+      size: 1296
+    outs:
+    - path: model
+      hash: md5
+      md5: 4ee6be65942ce4af11b2db695173573f.dir
+      size: 1183
+      nfiles: 1
