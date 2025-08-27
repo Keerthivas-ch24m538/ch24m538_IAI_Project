@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/keerthivas/ch24m538_IAI_Project/mlruns/497300851058514293/f7f0af4284e24d35913376e21bc16da1/artifacts
+end_time: 1756303443720
+entry_point_name: ''
+experiment_id: '497300851058514293'
+lifecycle_stage: active
+run_id: f7f0af4284e24d35913376e21bc16da1
+run_name: capable-auk-759
+run_uuid: f7f0af4284e24d35913376e21bc16da1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756303442970
+status: 4
+tags: []
+user_id: keerthivas

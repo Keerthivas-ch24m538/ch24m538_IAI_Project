@@ -1,0 +1,47 @@
+columns:
+  Survived:
+    type: integer
+    nullable: false
+    required: true
+  Pclass:
+    type: integer
+    nullable: false
+    required: true
+  Name:
+    type: string
+    nullable: false
+    required: true
+  Sex:
+    type: string
+    nullable: false
+    required: true
+  Age:
+    type: float
+    nullable: true
+    required: true
+  SibSp:
+    type: integer
+    nullable: false
+    required: true
+  Parch:
+    type: integer
+    nullable: false
+    required: true
+  Ticket:
+    type: string
+    nullable: false
+    required: true
+  Fare:
+    type: float
+    nullable: false
+    required: true
+  Cabin:
+    type: string
+    nullable: true
+    required: true
+  Embarked:
+    type: string
+    nullable: false
+    required: true
+forbid_extra_columns: true
+

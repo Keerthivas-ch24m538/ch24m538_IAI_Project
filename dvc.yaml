@@ -37,5 +37,22 @@ stages:
       - features
       - src/train.py
     outs:
-      - model
+      - models/baseline_logreg_pipeline.joblib
+      - models/tuned_logreg_pipeline.joblib
+    metrics:
+      - reports/metrics.json:
+          cache: false
+    plots:
+      - reports/plots:
+          cache: false
+
+  promote_model:
+    cmd: python scripts/promote_model.py
+    deps:
+      - models/baseline_logreg_pipeline.joblib
+      - models/tuned_logreg_pipeline.joblib
+      - reports/metrics.json
+      - scripts/promote_model.py
+    outs:
+      - models/current.joblib
 
