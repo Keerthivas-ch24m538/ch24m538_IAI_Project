@@ -1,4 +1,4 @@
-```markdown
+
 # 🏆 Titanic ML MLOps Pipeline
 
 This repository demonstrates a reproducible ML pipeline for the Titanic dataset using **DVC** for data and pipeline versioning, **MLflow** for experiment tracking, **PySpark** for preprocessing, and **FastAPI + Docker** for lightweight, scalable API deployment.
@@ -147,5 +147,5 @@ Maintainer: **[Keerthivas M]**
 Email: [ch24m538@smail.iitm.ac.in]
 
 ---
-```
+
 
