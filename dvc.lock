@@ -55,23 +55,26 @@ stages:
       nfiles: 4
     - path: src/train.py
       hash: md5
-      md5: 76085e0e2656fc7ae64647cb222d0c54
-      size: 10364
+      md5: a89ded5ea906ca1a887af8c3017c8bb6
+      size: 11202
     outs:
-    - path: models
+    - path: models/baseline_logreg_pipeline.joblib
       hash: md5
-      md5: 0fb211d1ae2a1a24fee33551181c572e.dir
+      md5: 6d7515e95ecd3f87fc8e343f88c3618b
       size: 1870
-      nfiles: 1
+    - path: models/tuned_logreg_pipeline.joblib
+      hash: md5
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
     - path: reports/metrics.json
       hash: md5
       md5: 48fd8a1ae39b4240c38e1b0350350e89
       size: 436
     - path: reports/plots
       hash: md5
-      md5: 8e453836e3486ac2e432601eb34cd9d9.dir
-      size: 194326
-      nfiles: 9
+      md5: ca4bc9ec11325ec2cd7945d858f8d391.dir
+      size: 130091
+      nfiles: 6
   validate_raw:
     cmd: python scripts/validate_raw_titanic.py
     deps:
@@ -95,3 +98,27 @@ stages:
       hash: md5
       md5: 83ae2ce9f1375d12333d80936d69faf2
       size: 925
+  promote_model:
+    cmd: python scripts/promote_model.py
+    deps:
+    - path: models/baseline_logreg_pipeline.joblib
+      hash: md5
+      md5: 6d7515e95ecd3f87fc8e343f88c3618b
+      size: 1870
+    - path: models/tuned_logreg_pipeline.joblib
+      hash: md5
+      md5: d41d8cd98f00b204e9800998ecf8427e
+      size: 0
+    - path: reports/metrics.json
+      hash: md5
+      md5: 48fd8a1ae39b4240c38e1b0350350e89
+      size: 436
+    - path: scripts/promote_model.py
+      hash: md5
+      md5: ba3651877cd3084be9a4264969176301
+      size: 384
+    outs:
+    - path: models/current.joblib
+      hash: md5
+      md5: 6d7515e95ecd3f87fc8e343f88c3618b
+      size: 1870
