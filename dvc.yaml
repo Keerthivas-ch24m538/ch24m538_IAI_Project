@@ -16,3 +16,10 @@ stages:
     - preprocess
     outs:
     - features
+  train:
+    cmd: python src/train.py
+    deps:
+    - features
+    - src/train.py
+    outs:
+    - model

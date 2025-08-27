@@ -29,8 +29,8 @@ stages:
       nfiles: 1
     - path: scripts/preprocess_spark.py
       hash: md5
-      md5: 0b980f7e16f456317f13ca7efdfc37c1
-      size: 1414
+      md5: 2e19e225917bc35228017be8e7328d04
+      size: 1410
     params:
       params.yaml:
         preprocess:
@@ -38,6 +38,6 @@ stages:
     outs:
     - path: features
       hash: md5
-      md5: 021c542a32126416e9e28f3f9e96e67e.dir
-      size: 30813
+      md5: 178f1ff965ef9e34c4b8e818cdf2f5d4.dir
+      size: 6756
       nfiles: 4

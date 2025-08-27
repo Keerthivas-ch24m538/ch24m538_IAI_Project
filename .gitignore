@@ -3,3 +3,4 @@ mlflow.db
 dvc_store/
 data/
 /features
+/model
