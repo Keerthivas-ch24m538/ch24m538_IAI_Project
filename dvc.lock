@@ -1,0 +1,43 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python scripts/get_data.py
+    deps:
+    - path: scripts/get_data.py
+      hash: md5
+      md5: 900657c99943c1eb0b2a24bdb2d07f4b
+      size: 534
+    params:
+      params.yaml:
+        get_data:
+          dataset_url: 
+            https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv
+          out_path: data/raw/titanic.csv
+    outs:
+    - path: data/raw
+      hash: md5
+      md5: 5462f90f9dc17707f448ff97428ca171.dir
+      size: 60302
+      nfiles: 1
+  preprocess:
+    cmd: python scripts/preprocess_spark.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 5462f90f9dc17707f448ff97428ca171.dir
+      size: 60302
+      nfiles: 1
+    - path: scripts/preprocess_spark.py
+      hash: md5
+      md5: 0b980f7e16f456317f13ca7efdfc37c1
+      size: 1414
+    params:
+      params.yaml:
+        preprocess:
+          output_dir: features
+    outs:
+    - path: features
+      hash: md5
+      md5: 021c542a32126416e9e28f3f9e96e67e.dir
+      size: 30813
+      nfiles: 4
