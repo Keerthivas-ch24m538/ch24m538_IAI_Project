@@ -1,0 +1,18 @@
+stages:
+  get_data:
+    cmd: python scripts/get_data.py
+    deps:
+    - scripts/get_data.py
+    params:
+    - get_data
+    outs:
+    - data/raw
+  preprocess:
+    cmd: python scripts/preprocess_spark.py
+    deps:
+    - data/raw
+    - scripts/preprocess_spark.py
+    params:
+    - preprocess
+    outs:
+    - features

@@ -1,0 +1,4 @@
+get_data:
+  dataset_url: "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+  out_path: "data/raw/titanic.csv"
+
