@@ -1,7 +1,7 @@
 ```markdown
-# Titanic ML MLOps Pipeline
+# 🏆 Titanic ML MLOps Pipeline
 
-This repository demonstrates a reproducible, production-style ML pipeline with DVC for data/version control, MLflow for experiment tracking, PySpark for preprocessing, and FastAPI+Docker for API deployment.
+This repository demonstrates a reproducible ML pipeline for the Titanic dataset using **DVC** for data and pipeline versioning, **MLflow** for experiment tracking, **PySpark** for preprocessing, and **FastAPI + Docker** for lightweight, scalable API deployment.
 
 ---
 
@@ -9,30 +9,23 @@ This repository demonstrates a reproducible, production-style ML pipeline with D
 
 ```
 .
-├── api/                  # API code and Dockerfile
-├── configs/              # Config files (e.g., mlflow.yaml)
+├── api/                  # FastAPI app & Dockerfile
+├── configs/              # Project configs (MLflow, etc.)
 ├── data/                 # DVC-tracked data (not in Git)
 ├── dvc.yaml              # DVC pipeline definition
-├── params.yaml           # Pipeline parameters (urls, file paths, etc.)
+├── params.yaml           # All pipeline parameters (urls, etc.)
 ├── requirements.txt      # Python dependencies
-├── scripts/              # ML/data scripts
-├── features/             # Preprocessed feature outputs (via DVC)
+├── scripts/              # Data download & preprocessing scripts
+├── features/             # Preprocessed features (DVC-managed)
 └── README.md
 ```
 
 ---
 
-## 🔥 Quickstart: Run the Whole Pipeline
+## 🛠️ Environment Setup
 
-### 1. **Clone and enter repository**
-```
-git clone <your-repo-url>
-cd <your-repo-folder>
-```
+### Option 1: Conda (Recommended)
 
-### 2. **Environment Setup**
-
-**Using Conda:**
 ```
 conda create -n mlops-pipeline python=3.10 -y
 conda activate mlops-pipeline
@@ -40,7 +33,8 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-**Or Using venv/pip:**
+### Option 2: Virtualenv
+
 ```
 python3 -m venv venv
 source venv/bin/activate
@@ -49,18 +43,19 @@ pip install -r requirements.txt
 
 ---
 
-### 3. **MLflow Tracking (Optional, but recommended for full pipeline)**
+## 📊 MLflow Tracking Setup
 
+**Start a local MLflow tracking server (for experiment logging):**
 ```
 mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns --host 127.0.0.1 --port 5000
 ```
-- Visit [http://127.0.0.1:5000](http://127.0.0.1:5000)
+Open the UI at: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ---
 
-### 4. **DVC Data Versioning**
+## 🗄️ DVC Data Versioning (Remote, Optional)
 
-If using a local DVC remote:
+**Set up a local DVC remote (if not done already):**
 ```
 mkdir -p dvc_store
 dvc remote add -d local ./dvc_store
@@ -68,43 +63,46 @@ dvc remote add -d local ./dvc_store
 
 ---
 
-### 5. **Pipeline Reproduction**
+## 🚦 Pipeline Reproducibility
 
+Reproduce the full pipeline (download & preprocess):
 ```
-dvc pull            # If collaborating & remote is set
-dvc repro           # Runs data download and preprocessing with PySpark
-dvc push            # Pushes latest outputs to DVC remote
+dvc repro
+```
+
+**Push outputs to DVC remote:**
+```
+dvc push
 ```
 
 ---
 
-### 6. **Build and Launch the API (Docker + FastAPI)**
+## 🚢 Build & Launch the API (FastAPI + Docker)
 
+### Build the Docker image:
 ```
 docker build -t titanic-api -f api/Dockerfile .
+```
+
+### Run the container:
+```
 docker run -p 8000:8000 titanic-api
 ```
-Open your browser to: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+
+Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to verify the API is running.
 
 ---
 
-## 🔧 Pipeline Details
+## 🧑‍💻 Pipeline Details
 
-**Stages:**
+- **get_data:** Downloads the Titanic CSV to `data/raw` using parameters in `params.yaml`
+- **preprocess (PySpark):** Reads from `data/raw/`, cleans and encodes features, writes processed data to `features/` in Parquet format
 
-1. **get_data:**  
-   Downloads Titanic CSV to `data/raw` using parameters in `params.yaml`.
-
-2. **preprocess (PySpark):**  
-   Reads `data/raw`, cleans and encodes features, writes `features/` in Parquet format.
-   - See `scripts/preprocess_spark.py`.
-
-**Note:**  
-- Output, input paths, and URLs are in `params.yaml` at the repo root.
+All **parameter values** (like URLs, output directories) are managed in `params.yaml`.
 
 ---
 
-## 📦 API Scaffold
+## 🔌 API Scaffold Example
 
 **File:** `api/app.py`
 ```
@@ -116,41 +114,38 @@ app = FastAPI()
 def root():
     return {"message": "API is up and running"}
 ```
-REST endpoints will be added to serve predictions in later project phases (e.g., loading models from MLflow registry).
+_Real model inference endpoints can be added as the project grows._
 
 ---
 
-## 💾 Committed, Tracked and Ignored Files
+## 🧹 Repo Hygiene & Submission Checklist
 
-Committed:
-- `requirements.txt`, `configs/mlflow.yaml`, `dvc.yaml`, `params.yaml`, `api/Dockerfile`, scripts
-
-Ignored (see `.gitignore`, `.dvcignore`):
-- Data/artifact directories: `data/`, `features/`, `dvc_store/`, large binaries, etc.
-
----
-
-## ✅ Demo Checklist
-
-- [ ] Clone and set up Python env
-- [ ] (Optional) Run MLflow server
-- [ ] Run: `dvc repro`
-- [ ] (Optional) Run: `dvc push`
-- [ ] Run: `docker build ...` and `docker run ...`
-- [ ] Open browser to API root endpoint
+- [x] All pipeline/config files tracked: `requirements.txt`, `configs/mlflow.yaml`, `dvc.yaml`, `params.yaml`, `api/Dockerfile`, scripts
+- [x] Large data, model outputs only tracked by DVC (never Git)
+- [x] All code & commands documented for rapid demo
+- [x] Minimal API endpoint available via Docker
 
 ---
 
-## 📝 Notes
+## 💡 Demo Flow (10 minutes)
 
-- All data versioned via DVC; only `*.dvc` pointers and pipeline defs in Git.
-- MLflow used for experiment tracking and (later) model registry.
-- PySpark-based preprocessing is reproducible, modular.
-- API is ready to serve/test, easy to extend for model inference.
+1. Clone repo & enter project folder
+2. Set up environment (`conda ...` or `venv ...`)
+3. (Optional) Start `mlflow server` in a new terminal
+4. `dvc pull` (if collaborating)
+5. `dvc repro` (runs pipeline)
+6. `dvc push` (pushes data to remote)
+7. `docker build` and `docker run` the API
+8. Open browser to API root endpoint
+9. (Optional) View MLflow UI for experiment logs
 
 ---
 
-_Contact: [Keerthivas M] ([ch24m538@smail.iitm.ac.in])_
+## 📝 Contact
+
+Maintainer: **[Keerthivas M]**  
+Email: [ch24m538@smail.iitm.ac.in]
+
+---
 ```
-
 
