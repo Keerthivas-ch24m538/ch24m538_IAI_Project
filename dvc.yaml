@@ -2,24 +2,40 @@ stages:
   get_data:
     cmd: python scripts/get_data.py
     deps:
-    - scripts/get_data.py
+      - scripts/get_data.py
     params:
-    - get_data
+      - get_data
     outs:
-    - data/raw
+      - data/raw
+
+  validate_raw:
+    cmd: python scripts/validate_raw_titanic.py
+    deps:
+      - data/raw/titanic.csv
+      - scripts/validate_raw_titanic.py
+
   preprocess:
     cmd: python scripts/preprocess_spark.py
     deps:
-    - data/raw
-    - scripts/preprocess_spark.py
+      - data/raw
+      - scripts/preprocess_spark.py
+      - expectations/schemas/titanic.yaml
     params:
-    - preprocess
+      - preprocess
     outs:
-    - features
+      - features
+
+  validate_features:
+    cmd: python scripts/validate_features.py
+    deps:
+      - features
+      - scripts/validate_features.py
+
   train:
     cmd: python src/train.py
     deps:
-    - features
-    - src/train.py
+      - features
+      - src/train.py
     outs:
-    - model
+      - model
+

@@ -27,10 +27,14 @@ stages:
       md5: 5462f90f9dc17707f448ff97428ca171.dir
       size: 60302
       nfiles: 1
+    - path: expectations/schemas/titanic.yaml
+      hash: md5
+      md5: 796105b9597f396cc5333f125a72737c
+      size: 754
     - path: scripts/preprocess_spark.py
       hash: md5
-      md5: 2e19e225917bc35228017be8e7328d04
-      size: 1410
+      md5: d030d0acebbebae8ed3201ccfbf520fd
+      size: 3515
     params:
       params.yaml:
         preprocess:
@@ -38,24 +42,47 @@ stages:
     outs:
     - path: features
       hash: md5
-      md5: 178f1ff965ef9e34c4b8e818cdf2f5d4.dir
-      size: 6756
+      md5: adf6df82b36272a6f4f2b321f106af0c.dir
+      size: 6370
       nfiles: 4
   train:
     cmd: python src/train.py
     deps:
     - path: features
       hash: md5
-      md5: 178f1ff965ef9e34c4b8e818cdf2f5d4.dir
-      size: 6756
+      md5: adf6df82b36272a6f4f2b321f106af0c.dir
+      size: 6370
       nfiles: 4
     - path: src/train.py
       hash: md5
-      md5: cc54f66ff9649ad3e08acee2fbfd5ad2
-      size: 1296
+      md5: 24b86dbd8ac22e130bb6b7fc842f17cd
+      size: 1415
     outs:
     - path: model
       hash: md5
-      md5: 4ee6be65942ce4af11b2db695173573f.dir
+      md5: e8276f67a32d7b4839281efed80366a2.dir
       size: 1183
       nfiles: 1
+  validate_raw:
+    cmd: python scripts/validate_raw_titanic.py
+    deps:
+    - path: data/raw/titanic.csv
+      hash: md5
+      md5: 61fdd54abdbf6a85b778e937122e1194
+      size: 60302
+    - path: scripts/validate_raw_titanic.py
+      hash: md5
+      md5: 53124f6afd4f0e8934050d9aa1411538
+      size: 1612
+  validate_features:
+    cmd: python scripts/validate_features.py
+    deps:
+    - path: features
+      hash: md5
+      md5: adf6df82b36272a6f4f2b321f106af0c.dir
+      size: 6370
+      nfiles: 4
+    - path: scripts/validate_features.py
+      hash: md5
+      md5: 83ae2ce9f1375d12333d80936d69faf2
+      size: 925
