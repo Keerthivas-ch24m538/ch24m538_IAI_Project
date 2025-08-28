@@ -107,6 +107,7 @@ Pygments==2.19.2
 pygtrie==2.5.0
 pyparsing==3.2.3
 pyspark==3.5.1
+pytest
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 pytz==2024.2
