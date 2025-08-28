@@ -66,11 +66,12 @@ jobs:
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Build (and optionally push) Docker image
+        if: ${{ github.ref == 'refs/heads/main' && secrets.DOCKERHUB_USERNAME && secrets.DOCKERHUB_TOKEN }}
         uses: docker/build-push-action@v5
         with:
           context: .
           file: api/Dockerfile
-          push: ${{ github.ref == 'refs/heads/main' && secrets.DOCKERHUB_USERNAME && secrets.DOCKERHUB_TOKEN }}
+          push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/titanic-api:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/titanic-api:${{ github.sha }}
