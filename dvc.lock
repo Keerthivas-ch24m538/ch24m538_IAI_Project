@@ -55,8 +55,8 @@ stages:
       nfiles: 4
     - path: src/train.py
       hash: md5
-      md5: a89ded5ea906ca1a887af8c3017c8bb6
-      size: 11202
+      md5: d5ca11029ceee2bd67ad9eb55006509a
+      size: 12629
     outs:
     - path: models/baseline_logreg_pipeline.joblib
       hash: md5

@@ -1,0 +1,683 @@
+.
+├── .DS_Store
+├── .dvcignore
+├── .github
+│   └── workflows
+│       ├── ci.yml
+│       └── nightly-tune.yml
+├── .gitignore
+├── .pytest_cache
+│   ├── .gitignore
+│   ├── CACHEDIR.TAG
+│   ├── README.md
+│   └── v
+│       └── cache
+│           ├── lastfailed
+│           └── nodeids
+├── api
+│   ├── __init__.py
+│   ├── .gitkeep
+│   ├── app.py
+│   ├── Dockerfile
+│   └── schemas.py
+├── configs
+│   ├── .gitkeep
+│   └── mlflow.yaml
+├── data
+│   ├── .gitkeep
+│   ├── external
+│   └── raw
+│       └── titanic.csv
+├── docs
+│   ├── .DS_Store
+│   ├── .gitkeep
+│   ├── repo_tree_clean.txt
+│   └── repo_tree.txt
+├── dvc_store
+│   └── files
+│       └── md5
+│           ├── 02
+│           │   └── 1c542a32126416e9e28f3f9e96e67e.dir
+│           ├── 0c
+│           │   └── 0e1f4a6732f4036e3960d8d41f4550
+│           ├── 13
+│           │   └── 79c53815434fd71dcb4d97d0f84561
+│           ├── 17
+│           │   └── 8f1ff965ef9e34c4b8e818cdf2f5d4.dir
+│           ├── 1c
+│           │   └── a073a1985a75f34eed180284426beb
+│           ├── 4e
+│           │   └── e6be65942ce4af11b2db695173573f.dir
+│           ├── 54
+│           │   └── 62f90f9dc17707f448ff97428ca171.dir
+│           ├── 61
+│           │   └── fdd54abdbf6a85b778e937122e1194
+│           ├── 6d
+│           │   └── 7515e95ecd3f87fc8e343f88c3618b
+│           ├── 72
+│           │   └── fa2772babcab5be8cf8c067c02c270
+│           ├── 78
+│           │   └── e39a5973fa77b2c157c9df8554c892
+│           ├── 9d
+│           │   └── fecc15c928c9274ad273719aa7a3c0
+│           ├── ad
+│           │   └── f6df82b36272a6f4f2b321f106af0c.dir
+│           ├── d4
+│           │   └── 1d8cd98f00b204e9800998ecf8427e
+│           ├── dd
+│           │   └── 2f92c8e0963b679aefc7f5145b80fb
+│           └── f3
+│               └── 9e2ffd882eb39f6e0b8901791c7c37
+├── dvc.lock
+├── dvc.yaml
+├── expectations
+│   └── schemas
+│       └── titanic.yaml
+├── features
+│   ├── _SUCCESS
+│   ├── ._SUCCESS.crc
+│   ├── .part-00000-4e98b718-d446-4f39-8863-ff53cae604e5-c000.snappy.parquet.crc
+│   └── part-00000-4e98b718-d446-4f39-8863-ff53cae604e5-c000.snappy.parquet
+├── mlflow.db
+├── mlruns
+│   ├── .trash
+│   ├── 0
+│   │   └── meta.yaml
+│   ├── 472743610499450696
+│   │   ├── 02eeed7bb01f4ff3b33ea786acd345dd
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       ├── mlflow.user
+│   │   │       └── selected_model
+│   │   ├── 0851ced1788a44c6941de15b0599cee9
+│   │   │   ├── artifacts
+│   │   │   │   └── reports
+│   │   │   │       └── features.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   ├── 25776b1e2b4847ee9c2d37da60b9e74d
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       ├── mlflow.user
+│   │   │       └── selected_model
+│   │   ├── 49106410e9934f0a97248504efb30802
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       ├── mlflow.user
+│   │   │       └── selected_model
+│   │   ├── 4f84c66d4ee44357affd069bafdb39a4
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   ├── 7ec36e04dfd84546b17e6055f824dd9c
+│   │   │   ├── artifacts
+│   │   │   │   └── reports
+│   │   │   │       └── features.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   ├── b27feb9b3fcd4617bbf05154a5b0e5c0
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   ├── b4a383b8592040a7a207300e2ac8607d
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   ├── bb75c0acf8c34aa986471311b1dae0ea
+│   │   │   ├── artifacts
+│   │   │   │   └── plots
+│   │   │   │       ├── val_tuned_confusion_matrix.png
+│   │   │   │       ├── val_tuned_pr_curve.png
+│   │   │   │       └── val_tuned_roc_curve.png
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── val_tuned_accuracy
+│   │   │   │   ├── val_tuned_f1
+│   │   │   │   ├── val_tuned_precision
+│   │   │   │   ├── val_tuned_recall
+│   │   │   │   └── val_tuned_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── best_clf__C
+│   │   │   │   ├── best_clf__max_iter
+│   │   │   │   ├── best_clf__penalty
+│   │   │   │   ├── best_clf__solver
+│   │   │   │   └── grid_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.parentRunId
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   ├── ec8efea336b049be939c3c5951ec4a11
+│   │   │   ├── artifacts
+│   │   │   │   ├── mlflow_model
+│   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   ├── metadata
+│   │   │   │   │   │   ├── conda.yaml
+│   │   │   │   │   │   ├── MLmodel
+│   │   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   │   └── requirements.txt
+│   │   │   │   │   ├── MLmodel
+│   │   │   │   │   ├── model.pkl
+│   │   │   │   │   ├── python_env.yaml
+│   │   │   │   │   └── requirements.txt
+│   │   │   │   ├── model
+│   │   │   │   │   └── baseline_logreg_pipeline.joblib
+│   │   │   │   ├── plots
+│   │   │   │   │   ├── test_baseline_confusion_matrix.png
+│   │   │   │   │   ├── test_baseline_pr_curve.png
+│   │   │   │   │   ├── test_baseline_roc_curve.png
+│   │   │   │   │   ├── val_baseline_confusion_matrix.png
+│   │   │   │   │   ├── val_baseline_pr_curve.png
+│   │   │   │   │   └── val_baseline_roc_curve.png
+│   │   │   │   └── reports
+│   │   │   │       ├── features.json
+│   │   │   │       └── metrics.json
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── test_baseline_accuracy
+│   │   │   │   ├── test_baseline_f1
+│   │   │   │   ├── test_baseline_precision
+│   │   │   │   ├── test_baseline_recall
+│   │   │   │   ├── test_baseline_roc_auc
+│   │   │   │   ├── val_baseline_accuracy
+│   │   │   │   ├── val_baseline_f1
+│   │   │   │   ├── val_baseline_precision
+│   │   │   │   ├── val_baseline_recall
+│   │   │   │   └── val_baseline_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── model_type
+│   │   │   │   ├── random_seed
+│   │   │   │   ├── test_size
+│   │   │   │   ├── tuned
+│   │   │   │   └── val_size
+│   │   │   └── tags
+│   │   │       ├── git_sha
+│   │   │       ├── mlflow.log-model.history
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       ├── mlflow.user
+│   │   │       └── selected_model
+│   │   ├── ff87a44e449141cf8df487073ac1e959
+│   │   │   ├── artifacts
+│   │   │   │   └── plots
+│   │   │   │       ├── val_tuned_confusion_matrix.png
+│   │   │   │       ├── val_tuned_pr_curve.png
+│   │   │   │       └── val_tuned_roc_curve.png
+│   │   │   ├── meta.yaml
+│   │   │   ├── metrics
+│   │   │   │   ├── val_tuned_accuracy
+│   │   │   │   ├── val_tuned_f1
+│   │   │   │   ├── val_tuned_precision
+│   │   │   │   ├── val_tuned_recall
+│   │   │   │   └── val_tuned_roc_auc
+│   │   │   ├── params
+│   │   │   │   ├── best_clf__C
+│   │   │   │   ├── best_clf__max_iter
+│   │   │   │   ├── best_clf__penalty
+│   │   │   │   ├── best_clf__solver
+│   │   │   │   └── grid_size
+│   │   │   └── tags
+│   │   │       ├── mlflow.parentRunId
+│   │   │       ├── mlflow.runName
+│   │   │       ├── mlflow.source.git.commit
+│   │   │       ├── mlflow.source.name
+│   │   │       ├── mlflow.source.type
+│   │   │       └── mlflow.user
+│   │   └── meta.yaml
+│   └── models
+│       └── titanic-logreg
+│           ├── meta.yaml
+│           └── version-1
+│               └── meta.yaml
+├── mlruns_backup
+│   ├── .trash
+│   ├── 1
+│   │   ├── 29a35e83abad41e6bfbc9b9b1c9e6fe5
+│   │   │   └── artifacts
+│   │   │       └── model
+│   │   │           ├── conda.yaml
+│   │   │           ├── metadata
+│   │   │           │   ├── conda.yaml
+│   │   │           │   ├── MLmodel
+│   │   │           │   ├── python_env.yaml
+│   │   │           │   └── requirements.txt
+│   │   │           ├── MLmodel
+│   │   │           ├── model.pkl
+│   │   │           ├── python_env.yaml
+│   │   │           └── requirements.txt
+│   │   ├── 474b9ce368c94bc88bba12ed1821b684
+│   │   │   └── artifacts
+│   │   │       └── model
+│   │   │           ├── conda.yaml
+│   │   │           ├── metadata
+│   │   │           │   ├── conda.yaml
+│   │   │           │   ├── MLmodel
+│   │   │           │   ├── python_env.yaml
+│   │   │           │   └── requirements.txt
+│   │   │           ├── MLmodel
+│   │   │           ├── model.pkl
+│   │   │           ├── python_env.yaml
+│   │   │           └── requirements.txt
+│   │   ├── a0e760d5417e46ab80815a600aad005c
+│   │   │   └── artifacts
+│   │   │       └── model
+│   │   │           ├── conda.yaml
+│   │   │           ├── metadata
+│   │   │           │   ├── conda.yaml
+│   │   │           │   ├── MLmodel
+│   │   │           │   ├── python_env.yaml
+│   │   │           │   └── requirements.txt
+│   │   │           ├── MLmodel
+│   │   │           ├── model.pkl
+│   │   │           ├── python_env.yaml
+│   │   │           └── requirements.txt
+│   │   ├── bfaed86490f3407aa58872b1099f2470
+│   │   │   └── artifacts
+│   │   │       └── model
+│   │   │           ├── conda.yaml
+│   │   │           ├── metadata
+│   │   │           │   ├── conda.yaml
+│   │   │           │   ├── MLmodel
+│   │   │           │   ├── python_env.yaml
+│   │   │           │   └── requirements.txt
+│   │   │           ├── MLmodel
+│   │   │           ├── model.pkl
+│   │   │           ├── python_env.yaml
+│   │   │           └── requirements.txt
+│   │   ├── e79d9178b5ef4e29b4bbf8bed8732b70
+│   │   │   └── artifacts
+│   │   │       └── model
+│   │   │           ├── conda.yaml
+│   │   │           ├── metadata
+│   │   │           │   ├── conda.yaml
+│   │   │           │   ├── MLmodel
+│   │   │           │   ├── python_env.yaml
+│   │   │           │   └── requirements.txt
+│   │   │           ├── MLmodel
+│   │   │           ├── model.pkl
+│   │   │           ├── python_env.yaml
+│   │   │           └── requirements.txt
+│   │   └── ea2293ccf5234d7e8f4adbca361c5922
+│   │       └── artifacts
+│   │           └── model
+│   │               ├── conda.yaml
+│   │               ├── metadata
+│   │               │   ├── conda.yaml
+│   │               │   ├── MLmodel
+│   │               │   ├── python_env.yaml
+│   │               │   └── requirements.txt
+│   │               ├── MLmodel
+│   │               ├── model.pkl
+│   │               ├── python_env.yaml
+│   │               └── requirements.txt
+│   └── 497300851058514293
+│       ├── f7f0af4284e24d35913376e21bc16da1
+│       │   ├── artifacts
+│       │   │   └── reports
+│       │   │       └── features.json
+│       │   ├── meta.yaml
+│       │   ├── metrics
+│       │   ├── params
+│       │   │   ├── model_type
+│       │   │   ├── random_seed
+│       │   │   ├── test_size
+│       │   │   ├── tuned
+│       │   │   └── val_size
+│       │   └── tags
+│       │       ├── mlflow.runName
+│       │       ├── mlflow.source.git.commit
+│       │       ├── mlflow.source.name
+│       │       ├── mlflow.source.type
+│       │       └── mlflow.user
+│       └── meta.yaml
+├── model
+│   └── model.joblib
+├── models
+│   ├── baseline_logreg_pipeline.joblib
+│   ├── current.joblib
+│   └── tuned_logreg_pipeline.joblib
+├── notebooks
+│   └── .gitkeep
+├── params.yaml
+├── pipelines
+│   └── .gitkeep
+├── README.md
+├── reports
+│   ├── .DS_Store
+│   ├── features.json
+│   ├── metrics.json
+│   ├── plots
+│   │   ├── test_baseline_confusion_matrix.png
+│   │   ├── test_baseline_pr_curve.png
+│   │   ├── test_baseline_roc_curve.png
+│   │   ├── val_baseline_confusion_matrix.png
+│   │   ├── val_baseline_pr_curve.png
+│   │   └── val_baseline_roc_curve.png
+│   └── Screenshots
+│       ├── api_get_health.png
+│       ├── api_post_predict.png
+│       ├── mlflow_ui_reg_model_v1.png
+│       ├── mlflow_ui_reg_model.png
+│       └── test_api_req.png
+├── requirements-dev.txt
+├── requirements.txt
+├── scripts
+│   ├── get_data.py
+│   ├── preprocess_spark.py
+│   ├── promote_model.py
+│   ├── test_api_request.py
+│   ├── validate_features.py
+│   └── validate_raw_titanic.py
+├── src
+│   ├── .gitkeep
+│   ├── train.py
+│   └── utils
+│       └── mlflow_setup.py
+└── tests
+    └── test_api.py
+
+180 directories, 501 files
