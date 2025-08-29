@@ -1,0 +1,73 @@
+.
+├── .dvcignore
+├── .gitignore
+├── README.md
+├── dvc.yaml
+├── dvc.lock
+├── requirements.txt
+├── requirements-dev.txt
+├── params.yaml
+├── api/
+│   ├── __init__.py
+│   ├── .gitkeep
+│   ├── app.py
+│   ├── Dockerfile
+│   └── schemas.py
+├── configs/
+│   ├── .gitkeep
+│   └── mlflow.yaml
+├── data/
+│   ├── .gitkeep
+│   ├── external/
+│   └── raw/
+│       └── titanic.csv
+├── docs
+│   ├── .gitkeep
+│   ├── repo_tree_clean.txt
+│   └── repo_tree.txt
+├── expectations/
+│   └── schemas/
+│       └── titanic.yaml
+├── features/
+│   ├── _SUCCESS
+│   ├── ._SUCCESS.crc
+│   ├── .part-00000-....crc
+│   └── part-00000-...snappy.parquet
+├── model/
+│   └── model.joblib
+├── models/
+│   ├── baseline_logreg_pipeline.joblib
+│   ├── current.joblib
+│   └── tuned_logreg_pipeline.joblib
+├── mlflow.db
+├── mlruns/
+│   └── ...                          # (MLflow experiments and registry content)
+├── notebooks/
+│   └── .gitkeep
+├── pipelines/
+│   └── .gitkeep
+├── reports/
+│   ├── features.json
+│   ├── metrics.json
+│   └── plots/
+│       ├── test_baseline_confusion_matrix.png
+│       ├── test_baseline_pr_curve.png
+│       ├── test_baseline_roc_curve.png
+│       ├── val_baseline_confusion_matrix.png
+│       ├── val_baseline_pr_curve.png
+│       └── val_baseline_roc_curve.png
+├── scripts/
+│   ├── get_data.py
+│   ├── preprocess_spark.py
+│   ├── promote_model.py
+│   ├── test_api_request.py
+│   ├── validate_features.py
+│   └── validate_raw_titanic.py
+├── src/
+│   ├── .gitkeep
+│   ├── train.py
+│   └── utils/
+│       └── mlflow_setup.py
+└── tests/
+    └── test_api.py
+
