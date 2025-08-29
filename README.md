@@ -7,6 +7,7 @@ A fully reproducible pipeline for the Kaggle Titanic classification task, featur
 - Strict data checks: schema validation against YAML spec and numeric-only features guard.[5][3][6]
 - MLflow tracking + optional registry: metrics, plots, and artifacts logged; optional model registration and stage transitions.[4]
 - Deterministic serving: API consumes models/current.joblib and a locked features list from reports/features.json to enforce input schema.[7][1]
+```
 .
 ├── api/
 │   ├── app.py                 # FastAPI service (loads models/current.joblib, reports/features.json)
@@ -42,7 +43,7 @@ A fully reproducible pipeline for the Kaggle Titanic classification task, featur
 ├── params.yaml                # Parameters: data URL, output dirs
 ├── requirements.txt           # All Python deps (DVC, MLflow, Spark, FastAPI, etc.)
 └── README.md
-
+```
 ## Repository layout
 - dvc.yaml: Pipeline definition and stage wiring.[2]
 - params.yaml: Centralized URLs and output dirs for data/preprocess stages.[8]
@@ -94,6 +95,8 @@ Registry note: train.py optionally registers the run’s model and can transitio
 - validate_features: Ensures numeric-only features and basic sanity checks on ranges.[6][2]
 - train: Concatenates Parquet, splits train/val/test, trains baseline Logistic Regression (and optionally tunes), logs metrics/plots to MLflow, writes reports/features.json and reports/metrics.json, and saves model artifacts.[2][4]
 - promote_model: Copies the selected winner from models/{baseline|tuned}_logreg_pipeline.joblib to models/current.joblib using the selection in reports/metrics.json. [2][7]
+
+```
 get_data            : python scripts/get_data.py
   └─ outs           : data/raw/
 
@@ -118,7 +121,7 @@ promote_model       : python scripts/promote_model.py
   ├─ deps           : models/{baseline,tuned}_logreg_pipeline.joblib
   │                   reports/metrics.json
   └─ outs           : models/current.joblib
-
+```
 ## Serving the model (FastAPI)
 The API expects:
 - models/current.joblib (sklearn Pipeline with scaler + classifier).[1][7]
